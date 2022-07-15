@@ -1,0 +1,11 @@
+@keyframes movestaryellow{
+    0%{
+        transform: translateY(0) translateX(0);
+      }
+      50%{
+        transform: translateY(100px) translateX(-100px);
+      }
+      100%{
+        transform: translateY(100px) translateX(-100px);
+      }
+    }

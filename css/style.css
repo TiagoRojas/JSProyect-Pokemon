@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap");
+@-webkit-keyframes movestaryellow {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(100px) translateX(-100px);
+  }
+  100% {
+    transform: translateY(100px) translateX(-100px);
+  }
+}
+@keyframes movestaryellow {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(100px) translateX(-100px);
+  }
+  100% {
+    transform: translateY(100px) translateX(-100px);
+  }
+}
+body {
+  font-family: "DotGothic16", sans-serif;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-areas: "gamespace";
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+body .gamespace {
+  grid-area: gamespace;
+  height: 640px;
+  width: 960px;
+  background-color: #000000;
+}
+body .gamespace h1 {
+  position: relative;
+  font-family: "Press Start 2P", cursive;
+  color: #ffffff;
+  font-size: 24px;
+  padding: 305px 0px;
+  margin: 0;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
