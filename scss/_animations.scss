@@ -1,11 +1,14 @@
-@keyframes movestaryellow{
-    0%{
-        transform: translateY(0) translateX(0);
-      }
-      50%{
-        transform: translateY(100px) translateX(-100px);
-      }
-      100%{
-        transform: translateY(100px) translateX(-100px);
-      }
-    }
+@keyframes parpadeo{
+  0%{
+    opacity: 100%;
+  }
+  40%{
+    opacity: 10%;
+  }
+  47%{
+    opacity: 10%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}

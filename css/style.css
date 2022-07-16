@@ -1,24 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap");
-@-webkit-keyframes movestaryellow {
+@-webkit-keyframes parpadeo {
   0% {
-    transform: translateY(0) translateX(0);
+    opacity: 100%;
   }
-  50% {
-    transform: translateY(100px) translateX(-100px);
+  40% {
+    opacity: 10%;
+  }
+  47% {
+    opacity: 10%;
   }
   100% {
-    transform: translateY(100px) translateX(-100px);
+    opacity: 100%;
   }
 }
-@keyframes movestaryellow {
+@keyframes parpadeo {
   0% {
-    transform: translateY(0) translateX(0);
+    opacity: 100%;
   }
-  50% {
-    transform: translateY(100px) translateX(-100px);
+  40% {
+    opacity: 10%;
+  }
+  47% {
+    opacity: 10%;
   }
   100% {
-    transform: translateY(100px) translateX(-100px);
+    opacity: 100%;
   }
 }
 body {
@@ -49,4 +55,6 @@ body .gamespace h1 {
   padding: 305px 0px;
   margin: 0;
   text-align: center;
+  -webkit-animation: parpadeo 5s infinite;
+          animation: parpadeo 5s infinite;
 }/*# sourceMappingURL=style.css.map */
