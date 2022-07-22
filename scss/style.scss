@@ -20,6 +20,7 @@ body{
         width: 960px;
         background-color: #000000;
         h1{
+            cursor: default;
             position: relative;
             font-family: 'Press Start 2P', cursive;
             color: #ffffff;
@@ -28,6 +29,33 @@ body{
             margin: 0;
             text-align: center;
             animation: parpadeo 5s infinite;
+        }
+        #canvas, .text{
+            animation: intro 2s both;
+        }
+        #containerText{
+            width: 890px;
+            height: 110px;
+            position: relative;
+            left: 35px;
+            top: -190px;
+            .text {
+                height: 100%;
+                width: 100%;
+                cursor: default;
+                font-size: 24px;
+                font-family: 'Press Start 2P', cursive;
+                overflow: hidden;
+                position: absolute;
+                z-index: 2;
+            }
+        }
+        .frame{
+            position: absolute;
+            top: -10px;
+            left: -15px;
+            z-index: 1;
+            border-radius: 25px;
         }
     }
 }

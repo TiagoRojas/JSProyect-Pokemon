@@ -27,6 +27,22 @@
     opacity: 100%;
   }
 }
+@-webkit-keyframes intro {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes intro {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 body {
   font-family: "DotGothic16", sans-serif;
   font-size: 24px;
@@ -48,6 +64,7 @@ body #gamespace {
   background-color: #000000;
 }
 body #gamespace h1 {
+  cursor: default;
   position: relative;
   font-family: "Press Start 2P", cursive;
   color: #ffffff;
@@ -57,4 +74,32 @@ body #gamespace h1 {
   text-align: center;
   -webkit-animation: parpadeo 5s infinite;
           animation: parpadeo 5s infinite;
+}
+body #gamespace #canvas, body #gamespace .text {
+  -webkit-animation: intro 2s both;
+          animation: intro 2s both;
+}
+body #gamespace #containerText {
+  width: 890px;
+  height: 110px;
+  position: relative;
+  left: 35px;
+  top: -190px;
+}
+body #gamespace #containerText .text {
+  height: 100%;
+  width: 100%;
+  cursor: default;
+  font-size: 24px;
+  font-family: "Press Start 2P", cursive;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+}
+body #gamespace .frame {
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  z-index: 1;
+  border-radius: 25px;
 }/*# sourceMappingURL=style.css.map */
