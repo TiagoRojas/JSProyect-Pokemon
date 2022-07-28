@@ -1,35 +1,14 @@
-// const player1 = prompt("Cual es tu nombre de jugador?")
-// const Player = [{
-//   nombre: player1,
-//   pokemonDescubiertos: 0,
-//   medallasObtenidas: 0
-// }]
-// const atacks = [{
-//   Abocajarro: 300,
-//   latigoCepa: 20,
-//   Placaje: 3,
-// }]
-// const pokemon1 = [{
-//   nombre: "Ratata",
-//   nivel: 1,
-//   hp: 20,
-//   mp: 10,
-//   defense: 14,
-//   ataques: atacks,
-// }]
-// console.log(Player)
-// console.log(atacks)
-// console.log(pokemon1)
+document.getElementById("start").addEventListener("click", run)
 
 function run() {
   const gamezone = document.getElementById("gamespace")
-  const video = '<video src="assets/videos/gameintro.mp4" width="960" height="640" autoplay="auto" loop id="video" onclick="skipintro()"></video>'
+  const video = '<video src="assets/videos/gameintro.mp4" width="960" height="640" autoplay="auto" loop id="video"></video>'
   gamezone.innerHTML = video
   const videoplaying = document.getElementById("video")
   videoplaying.volume = 0.2
   videoplaying.addEventListener("timeupdate", function() {
     if (this.currentTime > 7.5) {
-      videoplaying.setAttribute("onClick", "startgame()");
+      videoplaying.addEventListener("click", startgame);
     }
   });
 }
@@ -39,7 +18,7 @@ function skipintro() {
   const videotime = video.currentTime
   if (videotime > 7.5) {
     video.currentTime = 20.5;
-    video.setAttribute("onClick", "startgame()");
+    video.addEventListener("click", startgame);
   }
 }
 
@@ -53,7 +32,6 @@ function skipintro() {
 // console.log(ba)
 // canvas.innerHTML = '<img src="../assets/sprites/pokemon/29.png" id="introPokemon1" style="position: absolute; top: -10000px;">'
 
-let numberText = 0
 
 function startgame() {
   const video = document.getElementById("video");
@@ -65,7 +43,7 @@ function startgame() {
 
     const introMusic = new Audio("./assets/sprites/oak/introductionMusic.mp3")
     introMusic.play()
-    introMusic.loop
+    introMusic.loop = true
     introMusic.currentTime = 2
     introMusic.volume = 0.1
 
@@ -118,11 +96,18 @@ function startgame() {
     frame.width = 920
     frame.height = 160
 
+
     textCreation.id = "text";
     textCreation.classList.add("text");
     const text = document.getElementById("text");
     text.setAttribute("onselectstart", "return false");
 
+    const arrowCreation = document.createElement("img")
+    text.appendChild(arrowCreation)
+    arrowCreation.src = './assets/sprites/oak/arrow.png'
+    arrowCreation.classList.add("Typewriter__cursor")
+    arrowCreation.width = 30
+    arrowCreation.height = 20
 
     // "Pero primero dime cómo te llamas.",
     // "¡Bien! ¡Así que te llamas"
@@ -131,92 +116,120 @@ function startgame() {
       autoStart: true,
     });
     textwriter.typeString("¡Hola! ¡Éste es el mundo de Pokémon!")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("¡Me llamo Oak!")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("¡Pero la gente me llama Profesor Pokémon!")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("¡Este mundo está habitado por unas criaturas llamadas Pokémon!")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("Para algunos, los Pokémon son mascotas. Pero otros los usan para pelear.")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("En cuanto a mí...")
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString("Estudio a los Pokémon como profesión.")
-      .pauseFor(1000)
+      .pauseFor(10)
+      // .deleteAll()
+      // .typeString("¡Me llamo Oak!")
+      // .pauseFor(1000)
+      // .deleteAll()
+      // .typeString("¡Pero la gente me llama Profesor Pokémon!")
+      // .pauseFor(1000)
+      // .deleteAll()
+      // .typeString("¡Este mundo está habitado por unas criaturas llamadas Pokémon!")
+      // .pauseFor(1000)
+      // .deleteAll()
+      // .typeString("Para algunos, los Pokémon son mascotas. Pero otros los usan para pelear.")
+      // .pauseFor(1000)
+      // .deleteAll()
+      // .typeString("En cuanto a mí...")
+      // .pauseFor(1000)
+      // .deleteAll()
+      // .typeString("Estudio a los Pokémon como profesión.")
+      // .pauseFor(1000)
       .deleteAll()
       .typeString("Bueno, cuéntame algo de ti. ¿Eres chico o chica?")
-      .pauseFor(1000)
-      .deleteAll()
+      .callFunction(AskGen)
       .start();
 
+    function AskGen() {
+      const canvas = document.getElementById('canvas')
+      const ctx = canvas.getContext("2d")
+      canvas.width = 960;
+      canvas.height = 640;
 
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+        if (w < 2 * r) r = w / 2;
+        if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.arcTo(x + w, y, x + w, y + h, r);
+        this.arcTo(x + w, y + h, x, y + h, r);
+        this.arcTo(x, y + h, x, y, r);
+        this.arcTo(x, y, x + w, y, r);
+        this.closePath();
+        return this;
+      }
 
-    // gamezone.setAttribute("onClick", "changeText()");
-    // let test = numberText
-    // text.textContent = oakText[0];
-    // console.log(test)
+      ctx.drawImage(bg, 0, 0, 960, 640)
+      ctx.drawImage(ground, 225, 325, 500, 250)
+      ctx.drawImage(oak, 400, 100, 240, 380);
 
+      ctx.fillStyle = "#a0d0e0";
+      ctx.roundRect(625, 325, 200, 100, 10).fill();
+      ctx.fillStyle = "#f8f8f8";
+      ctx.roundRect(630, 330, 190, 90, 10).fill();
+      ctx.fillStyle = "#000000";
+      ctx.font = "20px 'Press Start 2P'";
+      ctx.fillText("Chico", 660, 370, 500);
+      ctx.fillStyle = "#000000";
+      ctx.font = "20px 'Press Start 2P'";
+      ctx.fillText("Chica", 660, 400);
 
+      const arrowRight = document.createElement("img");
+      containerText.appendChild(arrowRight);
+      arrowRight.src = './assets/sprites/oak/arrowRight.png';
+      arrowRight.classList.add("arrowRight");
+      arrowRight.classList.add("Typewriter__cursor");
+      arrowRight.id = "arrowRight";
+      arrowRight.width = 20;
+      arrowRight.height = 20;
 
-    const arrowCreation = document.createElement("img")
-    text.appendChild(arrowCreation)
-    arrowCreation.src = './assets/sprites/oak/arrow.png'
-    arrowCreation.classList.add("Typewriter__cursor")
-    arrowCreation.width = 30
-    arrowCreation.height = 20
+      test1 = 0
+      window.addEventListener('keydown', (event) => {
+        const arrowSelect = document.getElementById("arrowRight");
+        let key = event.key;
+        let arrowPosition = document.getElementById("arrowRight").style.top
+        // console.log(key)
+        if (key === "s" && test1 === 0) {
+          arrowRight.setAttribute("style", "top: -80px")
+          test1 = "si";
+        } else if (key === "s" && test1 === "si" && arrowPosition === "-110px") {
+          arrowRight.setAttribute("style", "top: -80px")
+        } else if (key === "s" && test1 === "si") {
+          arrowRight.setAttribute("style", "top: -110px")
+          test1 = 0;
+        } else if (key === "s" && test == 0) {}
+        if (key === "w" && test1 === 0) {
+          arrowRight.setAttribute("style", "top: -80px");
+          test = "si";
+        } else if (key === "w" && test1 === "si") {
+          arrowRight.setAttribute("style", "top: -110px");
+          test = 0;
+        } else if (key === "w" && test1 === "si" && arrowPosition === "-110px") {
+          arrowRight.setAttribute("style", "top: -80px");
+        } else if (key === "w" && test1 === 0 && arrowPosition === "-80px") {
+          arrowRight.setAttribute("style", "top: -110px");
+        }
+        if (key === "j") {
+          console.log(test1)
+          console.log(arrowPosition)
+        }
+      })
+    }
+
   } else if (videotime < 20.5) {
     video.currentTime = 20.5
   }
 }
 
-// function changeText() {
-//   const div = document.getElementById("gamespace")
-//   const canvas = document.getElementById("canvas")
-//   const ctx = canvas.getContext("2d")
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   ctx.fillStyle = "#a0d0e0"
-//   ctx.roundRect(20, 450, 920, 160, 40).fill();
-//   ctx.fillStyle = "#f8f8f8"
-//   ctx.roundRect(30, 460, 900, 140, 30).fill();
-
-// const oakText = [
-//   "¡Hola! ¡Éste es el mundo de Pokémon!",
-//   "¡Me llamo Oak!",
-//   "¡Pero la gente me llama Profesor Pokémon!",
-//   "¡Este mundo está habitado por unas criaturas llamadas Pokémon!",
-//   "Para algunos, los Pokémon son mascotas. Pero otros los",
-//   "usan para pelear.",
-//   "En cuanto a mí...",
-//   "Estudio a los Pokémon como profesión.",
-//   "Bueno, cuéntame algo de ti. ¿Eres chico o chica?",
-//   "Pero primero dime cómo te llamas.",
-//   "¡Bien! ¡Así que te llamas"
-// ]
-//   const text = document.getElementById("text");
-
-// }
-window.addEventListener('keydown', ({
-  keyCode
-}) => {
-  switch (keyCode) {
-    case 65:
-      console.log('a')
-      break;
-    case 83:
-      console.log('s')
-      break;
-    case 68:
-      console.log('d')
-      break;
-    case 87:
-      console.log('w')
-      break;
-  }
-})
+// window.addEventListener('keydown', (event) => {
+//   let key = event.key
+//   if (key === "a") {
+//     console.log("a")
+//   } else if (key === "w") {
+//     console.log("w")
+//   } else if (key === "s") {
+//     console.log("s")
+//   } else if (key === "d") {
+//     console.log("d")
+//   }
+// })

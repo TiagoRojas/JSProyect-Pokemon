@@ -102,4 +102,10 @@ body #gamespace .frame {
   left: -15px;
   z-index: 1;
   border-radius: 25px;
+}
+body #gamespace .arrowRight {
+  position: absolute;
+  top: -110px;
+  left: 600px;
+  z-index: 2;
 }/*# sourceMappingURL=style.css.map */
